@@ -1,8 +1,8 @@
-var activePlayer = 1;
+var activePlayer = 0;
 
 var scores = [0, 0];
 
-var roundScores = 0;
+var roundScore = 0;
 
 var diceNumber = Math.floor(Math.random()*6) + 1;
 
@@ -18,4 +18,26 @@ document.querySelector(".btn-roll").addEventListener("click", function() {
               var diceNumber = Math.floor(Math.random()*6) + 1;
               diceDom.style.display = "block";
               diceDom.src = 'dice-' + diceNumber + '.png';
+
+              if(diceNumber !==1 ) {
+                            roundScore = roundScore + diceNumber;
+                            document.getElementById("current-" + activePlayer).textContent = roundScore;
+              }
+              else{
+                            roundScore = 0;
+                            document.getElementById("current-" + activePlayer).textContent = 0;
+                            activePlayer === 0 ? (activePlayer=1) : (activePlayer = 0);
+                            // if(activePlayer === 0)
+                            // {
+                            //               activePlayer = 1;
+                            // }
+                            // else
+                            // {
+                            //               activePlayer = 0;
+                            // }
+                            document.querySelector(".player-0-panel").classList.toggle("active");
+                            document.querySelector(".player-1-panel").classList.toggle("active");
+              }
+
+
 });
