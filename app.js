@@ -1,3 +1,4 @@
+var isNewGame;
 var activePlayer;
 var scores;
 var roundScore;
@@ -5,6 +6,8 @@ var roundScore;
 var diceDom = document.querySelector(".dice");
 initGame();
 function initGame() {
+
+              isNewGame = true;
 
               activePlayer = 0;
               
@@ -32,6 +35,8 @@ function initGame() {
               }
 document.querySelector(".btn-roll").addEventListener("click", function() {
 
+if(isNewGame)
+{
               var diceNumber = Math.floor(Math.random()*6) + 1;
               diceDom.style.display = "block";
               diceDom.src = 'dice-' + diceNumber + '.png';
@@ -43,13 +48,21 @@ document.querySelector(".btn-roll").addEventListener("click", function() {
               else{
                             switchToNextPlayer()
               }
+}
+else
+{
+              alert("Тоглоом дууссан байна. NEW GAME товчийг дарж шинээр эхлүүлнэ үү");
+}
 });
 document.querySelector(".btn-hold").addEventListener("click", function(){
+if(isNewGame)
+{
               scores[activePlayer] = scores[activePlayer] + roundScore;
               document.getElementById("score-" + activePlayer).textContent = 
               scores[activePlayer];
               if(scores[activePlayer] >= 2)
               {
+                            isNewGame = false;
                             document.getElementById("name-" + activePlayer).textContent = "WINNER!!!";
                             document.querySelector(".player-" + activePlayer+ "-panel").classList.add("winner");
                             document.querySelector(".player-" + activePlayer+ "-panel").classList.remove("active");
@@ -57,6 +70,11 @@ document.querySelector(".btn-hold").addEventListener("click", function(){
               else {
                             switchToNextPlayer();
               }
+}
+else
+{
+              alert("Тоглоом дууссан байна. NEW GAME товчийг дарж шинээр эхлүүлнэ үү");
+}
 })
 function switchToNextPlayer(){
               roundScore = 0;
