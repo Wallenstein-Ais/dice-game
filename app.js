@@ -8,4 +8,6 @@ document.querySelector("#score-1").textContent = 0;
 document.querySelector("#current-0").textContent = 0;
 document.querySelector("#current-1").textContent = 0;
 
+document.querySelector(".dice").style.display = "none";
+
 console.log("Шоо" + dice);
